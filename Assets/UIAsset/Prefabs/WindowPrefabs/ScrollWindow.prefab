@@ -521,7 +521,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be32d633f30ea941b82895f8580da0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVisible: 0
+  visibleInStart: 0
+  actionButtons: []
 --- !u!114 &370042063870443466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,9 +535,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60362cfedc0666948b0bfa5194ce5cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 441034605045394628}
   dragArea: {fileID: 4078909508858785229}
   DragAreaDetermineByAlpha: 0
+  image: {fileID: 441034605045394628}
   windowOffReturnPosition: 0
 --- !u!222 &8533704498287623108
 CanvasRenderer:
@@ -566,8 +567,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 05e60fdbdbb02754bbc452aaf5df76cd, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: cf8a9c904f766344fb8bff2c048ed9df, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -746,6 +747,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2680595974208374405, guid: 755f4449767ca8449a22b51a639229b7, type: 3}
+      propertyPath: window
+      value: 
+      objectReference: {fileID: 8245419933233842687}
     - target: {fileID: 2929078927454338407, guid: 755f4449767ca8449a22b51a639229b7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

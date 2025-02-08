@@ -739,8 +739,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 05e60fdbdbb02754bbc452aaf5df76cd, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: cf8a9c904f766344fb8bff2c048ed9df, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -748,7 +748,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 1.6
 --- !u!114 &8095512654351702169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,9 +775,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60362cfedc0666948b0bfa5194ce5cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 4822419728612122860}
   dragArea: {fileID: 5922788767494554742}
   DragAreaDetermineByAlpha: 0
+  image: {fileID: 4822419728612122860}
   windowOffReturnPosition: 1
 --- !u!114 &4274725061895745329
 MonoBehaviour:

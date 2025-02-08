@@ -1,28 +1,31 @@
 using SGA.UI;
 using UnityEngine;
 
-[RequireComponent(typeof(InteractionWithScriptableObject))]
-public class BackupScriptableObject : MonoBehaviour
+namespace SGA.Data
 {
-    [SerializeField] SliderNToggle backupObject;
-    [SerializeField] ComplexWindow complexWindow;
-
-    InteractionWithScriptableObject interactComponent;
-
-    private void Awake()
+    [RequireComponent(typeof(InteractionWithScriptableObject))]
+    public class BackupScriptableObject : MonoBehaviour
     {
-        interactComponent = GetComponent<InteractionWithScriptableObject>();
-        interactComponent.backupAction += GetData;
-        complexWindow.dataReroll += OverlapData;
+        [SerializeField] SliderNToggle backupObject;
+        [SerializeField] ComplexWindow complexWindow;
 
-    }
+        InteractionWithScriptableObject interactComponent;
 
-    public void GetData()
-    {
-        backupObject.CopyValue(interactComponent.SliderNToggleObject);
-    }
-    public void OverlapData()
-    {
-        interactComponent.SliderNToggleObject.CopyValue(backupObject);
+        private void Awake()
+        {
+            interactComponent = GetComponent<InteractionWithScriptableObject>();
+            interactComponent.backupAction += GetData;
+            complexWindow.dataReroll += OverlapData;
+
+        }
+
+        public void GetData()
+        {
+            backupObject.CopyValue(interactComponent.SliderNToggleObject);
+        }
+        public void OverlapData()
+        {
+            interactComponent.SliderNToggleObject.CopyValue(backupObject);
+        }
     }
 }

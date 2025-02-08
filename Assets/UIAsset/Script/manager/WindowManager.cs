@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace SGA.UI
 {
+    [RequireComponent(typeof(PlayerInput))]
     public class WindowManager : MonoBehaviour
     {
         Dictionary<Transform, UIWindow> windowDictionary;

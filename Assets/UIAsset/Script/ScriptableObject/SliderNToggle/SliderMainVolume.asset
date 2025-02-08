@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SliderMainVolume
   m_EditorClassIdentifier: 
   sliderValue:
-  - 0
+  - 256
   - 1
-  - 0
-  - 0
-  - 0
-  - 0
-  toggleValue: 000000000000
+  - 3
+  - 1
+  - 1
+  - 1.1
+  toggleValue: 000000000100

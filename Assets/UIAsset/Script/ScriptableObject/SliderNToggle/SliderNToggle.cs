@@ -37,15 +37,13 @@ namespace SGA.UI
             int length = otherObject.sliderValue.Length;
             for (int i = 0; i < length; i++)
             {
-                sliderValue[i] = otherObject.sliderValue[i];
-
+                SetSliderValue(i, otherObject.sliderValue[i]);
             }
 
             length = otherObject.toggleValue.Length;
             for (int i = 0; i < length; i++)
             {
-                toggleValue[i] = otherObject.toggleValue[i];
-
+                SetToggleValue(i, otherObject.toggleValue[i]);
             }
         }
     }

@@ -9,7 +9,6 @@ namespace SGA.UI
     [RequireComponent(typeof(UIWindow))]
     public class WindowDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
     {
-        [SerializeField] Image image;
         [SerializeField] RectTransform dragArea;
         RectTransform m_rectTransform;
         Texture2D textureForPixel;
@@ -19,6 +18,7 @@ namespace SGA.UI
 
         [TooltipAttribute("if It's true, it will Check image Color.")]
         public bool DragAreaDetermineByAlpha;
+        [HideInInspector] public Image image;
         bool isDragging;
         [TooltipAttribute("if It's true, it return startPosition when window turn off.")]
         public bool windowOffReturnPosition;
@@ -40,7 +40,7 @@ namespace SGA.UI
 
             beginDragRectPosition = image.rectTransform.position;
 
-            if (!DragAreaDetermineByAlpha && !isDragging)
+            if (!DragAreaDetermineByAlpha || !isDragging)
                 return;
 
             Vector2 vec = MouseNormalized(eventData.position);

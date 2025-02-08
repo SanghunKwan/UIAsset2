@@ -1,47 +1,80 @@
 using UnityEngine;
+using System;
+using SGA.UI;
+
 namespace SGA.Temp
 {
-    using System;
-    using UI;
-
     public class SoundManager : MonoBehaviour
     {
-        AudioSource audioSources;
+        AudioSource bgmSource;
 
-        [SerializeField] SliderNToggle sliderNToggleData;
+        [SerializeField] SliderNToggle mainSliderNToggleDatas;
+        [SerializeField] SliderNToggle bgmSliderNToggleData;
+
+        [SerializeField] float[] audioSourceMax;
+
         Action[] toggleChangeAction;
         Action[] sliderChangeAction;
 
 
         private void Awake()
         {
-            audioSources = GetComponent<AudioSource>();
-            sliderNToggleData.toggleChangeAction += ToggleChangeAction;
-            sliderNToggleData.sliderChangeAction += SliderChangeAction;
+            bgmSource = transform.GetChild(0).GetComponent<AudioSource>();
 
+            bgmSliderNToggleData.toggleChangeAction += ToggleChangeAction;
+            bgmSliderNToggleData.sliderChangeAction += SliderChangeAction;
+
+            mainSliderNToggleDatas.toggleChangeAction += MainToggleChangeAction;
+            mainSliderNToggleDatas.sliderChangeAction += MainSliderChangeAction;
 
             SetAction();
         }
         void SetAction()
         {
             toggleChangeAction = new Action[6];
-            toggleChangeAction[0] = () => { audioSources.mute = sliderNToggleData.toggleValue[0]; };
-            toggleChangeAction[1] = () => { audioSources.bypassEffects = sliderNToggleData.toggleValue[1]; };
-            toggleChangeAction[2] = () => { audioSources.bypassListenerEffects = sliderNToggleData.toggleValue[2]; };
-            toggleChangeAction[3] = () => { audioSources.bypassReverbZones = sliderNToggleData.toggleValue[3]; };
-            toggleChangeAction[4] = () => { audioSources.playOnAwake = sliderNToggleData.toggleValue[4]; };
-            toggleChangeAction[5] = () => { audioSources.loop = sliderNToggleData.toggleValue[5]; };
+            toggleChangeAction[0] = () =>
+            {
+                bgmSource.mute =
+                mainSliderNToggleDatas.toggleValue[0] | bgmSliderNToggleData.toggleValue[0];
+            };
+            toggleChangeAction[1] = () =>
+            {
+                bgmSource.bypassEffects =
+                mainSliderNToggleDatas.toggleValue[1] | bgmSliderNToggleData.toggleValue[1];
+            };
+            toggleChangeAction[2] = () =>
+            {
+                bgmSource.bypassListenerEffects =
+                mainSliderNToggleDatas.toggleValue[2] | bgmSliderNToggleData.toggleValue[2];
+            };
+            toggleChangeAction[3] = () =>
+            {
+                bgmSource.bypassReverbZones =
+                mainSliderNToggleDatas.toggleValue[3] | bgmSliderNToggleData.toggleValue[3];
+            };
+            toggleChangeAction[4] = () =>
+            {
+                bgmSource.playOnAwake =
+                mainSliderNToggleDatas.toggleValue[4] | bgmSliderNToggleData.toggleValue[4];
+            };
+            toggleChangeAction[5] = () =>
+            {
+                bgmSource.loop =
+                mainSliderNToggleDatas.toggleValue[5] | bgmSliderNToggleData.toggleValue[5];
+            };
 
 
             sliderChangeAction = new Action[6];
-            sliderChangeAction[0] = () => { audioSources.priority = Mathf.RoundToInt(sliderNToggleData.sliderValue[0]); };
-            sliderChangeAction[1] = () => { audioSources.volume = sliderNToggleData.sliderValue[1]; };
-            sliderChangeAction[2] = () => { audioSources.pitch = sliderNToggleData.sliderValue[2]; };
-            sliderChangeAction[3] = () => { audioSources.panStereo = sliderNToggleData.sliderValue[3]; };
-            sliderChangeAction[4] = () => { audioSources.spatialBlend = sliderNToggleData.sliderValue[4]; };
-            sliderChangeAction[5] = () => { audioSources.reverbZoneMix = sliderNToggleData.sliderValue[5]; };
-
-
+            sliderChangeAction[0] = () => { bgmSource.priority = Mathf.RoundToInt(MultiplyWithMain(0, bgmSliderNToggleData)); };
+            sliderChangeAction[1] = () => { bgmSource.volume = MultiplyWithMain(1, bgmSliderNToggleData); };
+            sliderChangeAction[2] = () => { bgmSource.pitch = MultiplyWithMain(2, bgmSliderNToggleData); };
+            sliderChangeAction[3] = () => { bgmSource.panStereo = MultiplyWithMain(3, bgmSliderNToggleData); };
+            sliderChangeAction[4] = () => { bgmSource.spatialBlend = MultiplyWithMain(4, bgmSliderNToggleData); };
+            sliderChangeAction[5] = () => { bgmSource.reverbZoneMix = MultiplyWithMain(5, bgmSliderNToggleData); };
+        }
+        float MultiplyWithMain(int index, in SliderNToggle sliderNToggleData)
+        {
+            return mainSliderNToggleDatas.sliderValue[index] * sliderNToggleData.sliderValue[index] / audioSourceMax[index];
         }
         public void ToggleChangeAction(int index)
         {
@@ -50,6 +83,14 @@ namespace SGA.Temp
         public void SliderChangeAction(int index)
         {
             sliderChangeAction[index]();
+        }
+        public void MainToggleChangeAction(int index)
+        {
+            ToggleChangeAction(index);
+        }
+        public void MainSliderChangeAction(int index)
+        {
+            SliderChangeAction(index);
         }
     }
 }

@@ -15,11 +15,12 @@ namespace SGA.UI
         public bool isChanged { get; set; }
 
         WindowManager windowManager;
+        [SerializeField] string cancelPopupName = "SettingCancelPopup";
         UIWindow cancelPopup;
         private void Start()
         {
             windowManager = transform.parent.GetComponent<WindowManager>();
-            cancelPopup = windowManager.transform.Find("SettingCancelPopup").GetComponent<UIWindow>();
+            cancelPopup = windowManager.transform.Find(cancelPopupName).GetComponent<UIWindow>();
 
             UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
             keyButtonDictionary = new Dictionary<string, UnityEngine.UI.Button>();
